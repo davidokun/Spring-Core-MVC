@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 
 public class JavaConfig {
 
-    @Bean
+    @Bean /* Default Bean ID is method name */
     public BlogPostService blogPostService() {
         return new BlogPostServiceImpl();
     }
