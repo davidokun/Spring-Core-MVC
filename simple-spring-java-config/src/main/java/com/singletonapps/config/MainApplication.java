@@ -12,7 +12,11 @@ public class MainApplication {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(JavaConfig.class);
 
+        /* Getting Bean by type */
         BlogPostService blogPostService = applicationContext.getBean(BlogPostService.class);
+
+        /* Getting bean by method name (Default Bean Id) */
+//        BlogPostService blogPostService = (BlogPostService) applicationContext.getBean("blogPostService");
 
         BlogPost blogPost = new BlogPost();
         blogPost.setId(1L);
