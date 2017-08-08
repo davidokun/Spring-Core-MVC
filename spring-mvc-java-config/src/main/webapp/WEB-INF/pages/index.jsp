@@ -38,6 +38,8 @@
     <h1>Java Spring MVC(JavaConfig)</h1>
     <p>The sample application for Spring MVC JavaConfig</p>
     <p>Welcome to Java Spring MVC with Java Configuration</p>
+
+    <a href="${pageContext.request.contextPath}/displayUsers">Display users with embedded Database</a>
 </div>
 
 <footer class="footer">
