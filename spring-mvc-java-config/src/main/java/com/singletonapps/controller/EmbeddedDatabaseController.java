@@ -3,6 +3,7 @@ package com.singletonapps.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,8 @@ public class EmbeddedDatabaseController {
     private static Logger LOGGER = LoggerFactory.getLogger(EmbeddedDatabaseController.class);
 
     @Autowired
-    private DataSource dataSource;
+    @Qualifier("embedded")
+    private DataSource embedded;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -26,7 +28,7 @@ public class EmbeddedDatabaseController {
     public void displayUsers() {
 
         /* EMBEDDED DATABASE */
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(embedded);
 
         List<Map<String, Object>> users = jdbcTemplate.queryForList("SELECT * FROM USER");
 
