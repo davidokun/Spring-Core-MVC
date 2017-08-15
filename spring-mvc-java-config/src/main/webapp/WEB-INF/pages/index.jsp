@@ -40,6 +40,7 @@
     <p>Welcome to Java Spring MVC with Java Configuration</p>
 
     <a href="${pageContext.request.contextPath}/displayUsers">Display users with embedded Database</a>
+    <a href="${pageContext.request.contextPath}/displayUsersMySQL">Display users with MySql Database</a>
 </div>
 
 <footer class="footer">
