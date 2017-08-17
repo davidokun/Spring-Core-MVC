@@ -28,7 +28,7 @@ public class DatabaseController {
         /* MySQL DATABASE */
         jdbcTemplate = new JdbcTemplate(dataSource);
 
-        List<Map<String, Object>> users = jdbcTemplate.queryForList("SELECT * FROM USER");
+        List<Map<String, Object>> users = jdbcTemplate.queryForList("SELECT * FROM test.user");
 
         users
                 .forEach(user -> LOGGER.debug("username: " + user.get("userName")));
