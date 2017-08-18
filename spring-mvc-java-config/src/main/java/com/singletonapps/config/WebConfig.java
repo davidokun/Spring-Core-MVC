@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @EnableWebMvc
 @Configuration
-@Import({ApplicationContext.class})
+@Import({DataBaseContext.class})
 @ComponentScan(basePackages = "com.singletonapps")
 @PropertySource(value = "classpath:application.properties")
 public class WebConfig extends WebMvcConfigurerAdapter {
