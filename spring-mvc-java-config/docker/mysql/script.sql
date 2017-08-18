@@ -1,4 +1,6 @@
-CREATE TABLE user
+CREATE SCHEMA test;
+
+CREATE TABLE test.user
 (
     id INT,
     username VARCHAR(50),
