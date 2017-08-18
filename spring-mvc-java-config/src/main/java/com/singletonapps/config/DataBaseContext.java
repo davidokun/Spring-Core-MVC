@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 @Configuration
-public class ApplicationContext {
+public class DataBaseContext {
 
 
     @Autowired
