@@ -1,13 +1,27 @@
 package com.singletonapps.domain;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
+
+    @Column(name = "username", nullable = false)
     private String userName;
+
+    @Column(name = "password", nullable = false)
     private String passWord;
+
+    @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<BlogPost> blogPosts;
 
     public Long getId() {
