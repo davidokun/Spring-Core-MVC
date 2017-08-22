@@ -1,9 +1,20 @@
 package com.singletonapps.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "authorities")
 public class Authority {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
+
+    @Column(name = "user_name", nullable = false)
     private String userName;
+
+    @Column(name = "authority", nullable = false)
     private String authority;
 
     public Long getId() {
