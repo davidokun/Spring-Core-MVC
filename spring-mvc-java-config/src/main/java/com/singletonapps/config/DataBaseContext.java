@@ -1,10 +1,13 @@
 package com.singletonapps.config;
 
+import com.singletonapps.service.BlogPostService;
+import com.singletonapps.service.impl.BlogPostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -13,12 +16,15 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.singletonapps.dao")
 public class DataBaseContext {
 
 
@@ -36,6 +42,12 @@ public class DataBaseContext {
         dataSource.setPassword(environment.getProperty("jdbc.password"));
 
         return dataSource;
+    }
+
+    @Bean
+    public BlogPostService blogPostService() {
+
+        return new BlogPostServiceImpl();
     }
 
     @Bean
@@ -74,20 +86,21 @@ public class DataBaseContext {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
+        LocalContainerEntityManagerFactoryBean entityManagerFactory =
                 new LocalContainerEntityManagerFactoryBean();
 
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("com.sinlgetonapps.domain");
+        entityManagerFactory.setDataSource(dataSource());
+        entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
+        entityManagerFactory.setPackagesToScan("com.singletonapps.domain");
 
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+        entityManagerFactory.setJpaProperties(jpaProperties);
 
-        return entityManagerFactoryBean;
+        return entityManagerFactory;
     }
 }
