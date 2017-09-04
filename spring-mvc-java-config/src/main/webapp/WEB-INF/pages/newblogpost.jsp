@@ -45,14 +45,14 @@
 
     <form action="${pageContext.request.contextPath}/saveBlogPost" method="post">
 
-        <table>
+        <table style="width: 650px" class="table table-striped">
             <tr>
                 <td>Title</td>
-                <td><input type="text" name="title"></td>
+                <td><input type="text" name="title" required autofocus /></td>
             </tr>
             <tr>
                 <td>Content</td>
-                <td><textarea name="content"></textarea></td>
+                <td><textarea style="width: 400px" name="content" maxlength="4000" required></textarea></td>
             </tr>
             <tr>
                 <td>Draft</td>
