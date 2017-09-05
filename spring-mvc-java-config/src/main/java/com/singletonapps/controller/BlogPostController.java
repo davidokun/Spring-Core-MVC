@@ -2,6 +2,7 @@ package com.singletonapps.controller;
 
 import com.singletonapps.domain.BlogPost;
 import com.singletonapps.service.BlogPostService;
+import com.singletonapps.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ public class BlogPostController {
     @Autowired
     private BlogPostService blogPostService;
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value = "/saveBlogPost", method = RequestMethod.POST)
     public ModelAndView saveBlogPost(@RequestParam("title") String title,
@@ -26,6 +30,8 @@ public class BlogPostController {
         blogPost.setTitle(title);
         blogPost.setContent(content);
         blogPost.setDraft(draft);
+
+        blogPost.setUser(userService.findUserById(1L));
 
         if (draft) {
             blogPostService.saveAsDraft(blogPost);
