@@ -64,7 +64,7 @@ public class DataBaseContext {
     }
 
     @Bean
-    public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
 
