@@ -27,6 +27,8 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "com.singletonapps.dao")
 public class DataBaseContext {
 
+    private final String HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private final String HIBERNATE_DIALECT = "hibernate.dialect";
 
     @Autowired
     private Environment environment;
@@ -96,8 +98,8 @@ public class DataBaseContext {
         entityManagerFactory.setPackagesToScan("com.singletonapps.domain");
 
         Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        jpaProperties.setProperty(HIBERNATE_HBM2DDL_AUTO, environment.getProperty(HIBERNATE_HBM2DDL_AUTO));
+        jpaProperties.setProperty(HIBERNATE_DIALECT, environment.getProperty(HIBERNATE_DIALECT));
 
         entityManagerFactory.setJpaProperties(jpaProperties);
 
