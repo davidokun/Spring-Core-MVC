@@ -8,7 +8,7 @@ import java.util.Date;
 public class BlogPost {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -18,7 +18,7 @@ public class BlogPost {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "publish_date")
+    @Column(name = "publishdate")
     private Date publishDate;
 
     @Column(name = "draft", nullable = false)
