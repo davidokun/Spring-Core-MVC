@@ -41,13 +41,13 @@ public class BlogPostServiceImpl implements BlogPostService {
     @Override
     public List<BlogPost> listAllBlogPostsByUserAndDraftStatus(User user, boolean draft) {
 
-        return null;
+        return blogPostDAO.findAllBlogPostByUserAndDraft(user, draft);
     }
 
     @Override
     public List<BlogPost> listAllBlogPostsByUserAndTitleLike(User user, String title) {
 
-        return null;
+        return blogPostDAO.findAllBlogPostByUserAndTitleContaining(user, title);
     }
 
     @Override
