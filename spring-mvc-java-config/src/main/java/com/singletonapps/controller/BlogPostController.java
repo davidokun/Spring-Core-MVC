@@ -1,6 +1,7 @@
 package com.singletonapps.controller;
 
 import com.singletonapps.domain.BlogPost;
+import com.singletonapps.domain.User;
 import com.singletonapps.service.BlogPostService;
 import com.singletonapps.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class BlogPostController {
@@ -31,7 +34,7 @@ public class BlogPostController {
         blogPost.setContent(content);
         blogPost.setDraft(draft);
 
-        blogPost.setUser(userService.findUserById(1L));
+        blogPost.setUser(userService.findUserById(userService.findUserWithBlogPostsByUsername("user").getId()));
 
         if (draft) {
             blogPostService.saveAsDraft(blogPost);
@@ -41,4 +44,15 @@ public class BlogPostController {
 
         return new ModelAndView("newblogpost", "message", "Blog Post is saved");
     }
+
+    @RequestMapping(value = "/blogPosts", method = RequestMethod.GET)
+    public ModelAndView blogPost() {
+
+        User user = userService.findUserWithBlogPostsByUsername("user");
+        List<BlogPost> blogPosts = user.getBlogPosts();
+
+        return new ModelAndView("blogposts", "blogposts", blogPosts);
+    }
+
+
 }
