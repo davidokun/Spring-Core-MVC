@@ -44,6 +44,9 @@
     </c:if>
 
     <a href="${pageContext.request.contextPath}/">Back</a>
+    <br/>
+    <a href="${pageContext.request.contextPath}/newblogpost.html">Enter a new Blog Post</a>
+    <br/>
 
     <c:if test="${ not empty blogposts}">
 
