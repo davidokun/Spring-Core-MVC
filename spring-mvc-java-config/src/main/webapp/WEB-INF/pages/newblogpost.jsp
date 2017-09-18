@@ -66,7 +66,7 @@
     </form>
 
 
-    <a href="${pageContext.request.contextPath}">Back</a>
+    <a href="${pageContext.request.contextPath}/">Back</a>
 </div>
 
 <footer class="footer">

@@ -43,7 +43,7 @@
         No BlogPosts found <br />
     </c:if>
 
-    <a href="${pageContext.request.contextPath}">Back</a>
+    <a href="${pageContext.request.contextPath}/">Back</a>
 
     <c:if test="${ not empty blogposts}">
 
