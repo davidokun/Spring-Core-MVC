@@ -44,6 +44,8 @@
     <a href="${pageContext.request.contextPath}/displayUsersMySQL">Display users with MySql Database</a>
     <br />
     <a href="${pageContext.request.contextPath}/newblogpost.html">New Blog Post</a>
+    <br />
+    <a href="${pageContext.request.contextPath}/blogPosts">Blog Posts</a>
 </div>
 
 <footer class="footer">
