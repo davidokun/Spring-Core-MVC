@@ -5,10 +5,9 @@ import com.singletonapps.domain.User;
 import com.singletonapps.service.BlogPostService;
 import com.singletonapps.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -54,5 +53,31 @@ public class BlogPostController {
         return new ModelAndView("blogposts", "blogposts", blogPosts);
     }
 
+    @RequestMapping(value = "/draftBlogPosts", method = RequestMethod.GET)
+    public ModelAndView draftBlogPost() {
+
+        User user = userService.findUserWithBlogPostsByUsername("user");
+
+        List<BlogPost> draftBlogPosts = blogPostService.listAllBlogPostsByUserAndDraftStatus(user, Boolean.TRUE);
+
+        return new ModelAndView("blogposts", "blogposts", draftBlogPosts);
+    }
+
+    @RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
+    public ModelAndView searchByTitle(@RequestParam("title") String title) {
+
+        User user = userService.findUserWithBlogPostsByUsername("user");
+
+        List<BlogPost> blogPosts = blogPostService.listAllBlogPostsByUserAndTitleLike(user, title);
+
+        return new ModelAndView("blogposts", "blogposts", blogPosts);
+    }
+
+    @RequestMapping(value = "/getBlogPostById/{id}", method = RequestMethod.GET)
+    @ResponseStatus(code = HttpStatus.OK)
+    public @ResponseBody BlogPost getBlogPostsById(@PathVariable("id") long id) {
+
+        return blogPostService.findBlogPostById(id);
+    }
 
 }
