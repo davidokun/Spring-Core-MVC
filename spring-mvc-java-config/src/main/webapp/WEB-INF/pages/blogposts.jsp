@@ -48,6 +48,19 @@
     <a href="${pageContext.request.contextPath}/newblogpost.html">Enter a new Blog Post</a>
     <br/>
 
+    <form action="${pageContext.request.contextPath}/searchByTitle" method="post">
+
+        <table>
+            <tr><td>Blog Title:</td><td><input type="text" name="title" /></td></tr>
+            <tr><td colspan="2"><input type="submit" value="Search" /></td></tr>
+        </table>
+
+    </form>
+
+
+
+
+    <br/>
     <c:if test="${ not empty blogposts}">
 
         <table style="width: 650px" class="table table-striped">

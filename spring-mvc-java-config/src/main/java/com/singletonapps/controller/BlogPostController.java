@@ -63,7 +63,7 @@ public class BlogPostController {
         return new ModelAndView("blogposts", "blogposts", draftBlogPosts);
     }
 
-    @RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchByTitle", method = RequestMethod.POST)
     public ModelAndView searchByTitle(@RequestParam("title") String title) {
 
         User user = userService.findUserWithBlogPostsByUsername("user");
