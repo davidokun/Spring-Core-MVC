@@ -57,6 +57,11 @@
 
     </form>
 
+    <br />
+
+    <a href="${pageContext.request.contextPath}/draftBlogPosts">Find draft Blog Post</a>
+    <br />
+
 
 
 
