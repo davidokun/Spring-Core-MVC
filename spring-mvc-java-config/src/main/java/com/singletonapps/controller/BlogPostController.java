@@ -5,12 +5,14 @@ import com.singletonapps.domain.User;
 import com.singletonapps.service.BlogPostService;
 import com.singletonapps.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class BlogPostController {
@@ -21,11 +23,15 @@ public class BlogPostController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MessageSource messageSource;
+
 
     @RequestMapping(value = "/saveBlogPost", method = RequestMethod.POST)
     public ModelAndView saveBlogPost(@RequestParam("title") String title,
                                      @RequestParam("content") String content,
-                                     @RequestParam(value = "draft", required = false) boolean draft) {
+                                     @RequestParam(value = "draft", required = false) boolean draft,
+                                     Locale locale) {
 
 
         BlogPost blogPost = new BlogPost();
@@ -41,7 +47,7 @@ public class BlogPostController {
             blogPostService.savePost(blogPost);
         }
 
-        return new ModelAndView("newblogpost", "message", "Blog Post is saved");
+        return new ModelAndView("newblogpost", "message", messageSource.getMessage("blogpost.saved", null, locale));
     }
 
     @RequestMapping(value = "/blogPosts", method = RequestMethod.GET)
