@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,6 +52,10 @@
 <footer class="footer">
     <div class="container">
         <p class="text-muted"><b>2016</b></p>
+
+        <a href="<%=request.getContextPath()%>?language=en">EN</a>
+        <a href="<%=request.getContextPath()%>?language=de">DE</a>
+
         <font color="green"><b><spring:message code="welcome.text"/></b></font>
     </div>
 </footer>

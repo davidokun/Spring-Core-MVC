@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 
@@ -75,6 +76,10 @@
 <footer class="footer">
     <div class="container">
         <p class="text-muted"><b>2016</b></p>
+
+        <a href="<%=request.getContextPath()%>?language=en">EN</a>
+        <a href="<%=request.getContextPath()%>?language=de">DE</a>
+
         <font color="green"><b><spring:message code="welcome.text"/></b></font>
     </div>
 </footer>
