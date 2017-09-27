@@ -3,6 +3,7 @@ package com.singletonapps.config;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
@@ -39,6 +40,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
         /* Manage the lifecycle of rootContext */
         servletContext.addListener(new ContextLoaderListener(rootContext));
+
+        DelegatingFilterProxy filterProxy = new DelegatingFilterProxy("springSecurityFilterChain");
+
+        servletContext.addFilter("springSecurityFilterChain", filterProxy)
+                .addMappingForUrlPatterns(null, false, "/*");
 
         /* Creates DispatcherServlet */
         DispatcherServlet dispatcherServlet = new DispatcherServlet(rootContext);
