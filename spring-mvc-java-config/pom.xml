@@ -10,6 +10,7 @@
     <properties>
         <springframework.version>4.2.4.RELEASE</springframework.version>
         <spring.jpa.data.version>1.9.2.RELEASE</spring.jpa.data.version>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
         <hibernate.version>5.1.10.Final</hibernate.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
@@ -35,6 +36,24 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>${springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <!-- Logging with SLF4J & LogBack -->
