@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,7 +32,8 @@ public class BlogPostController {
     public ModelAndView saveBlogPost(@RequestParam("title") String title,
                                      @RequestParam("content") String content,
                                      @RequestParam(value = "draft", required = false) boolean draft,
-                                     Locale locale) {
+                                     Locale locale,
+                                     Principal principal) {
 
 
         BlogPost blogPost = new BlogPost();
@@ -39,7 +41,7 @@ public class BlogPostController {
         blogPost.setContent(content);
         blogPost.setDraft(draft);
 
-        blogPost.setUser(userService.findUserById(userService.findUserWithBlogPostsByUsername("user").getId()));
+        blogPost.setUser(userService.findUserWithBlogPostsByUsername(principal.getName()));
 
         if (draft) {
             blogPostService.saveAsDraft(blogPost);
@@ -51,18 +53,18 @@ public class BlogPostController {
     }
 
     @RequestMapping(value = "/blogPosts", method = RequestMethod.GET)
-    public ModelAndView blogPost() {
+    public ModelAndView blogPost(Principal principal) {
 
-        User user = userService.findUserWithBlogPostsByUsername("user");
+        User user = userService.findUserWithBlogPostsByUsername(principal.getName());
         List<BlogPost> blogPosts = user.getBlogPosts();
 
         return new ModelAndView("blogposts", "blogposts", blogPosts);
     }
 
     @RequestMapping(value = "/draftBlogPosts", method = RequestMethod.GET)
-    public ModelAndView draftBlogPost() {
+    public ModelAndView draftBlogPost(Principal principal) {
 
-        User user = userService.findUserWithBlogPostsByUsername("user");
+        User user = userService.findUserWithBlogPostsByUsername(principal.getName());
 
         List<BlogPost> draftBlogPosts = blogPostService.listAllBlogPostsByUserAndDraftStatus(user, Boolean.TRUE);
 
@@ -70,9 +72,9 @@ public class BlogPostController {
     }
 
     @RequestMapping(value = "/searchByTitle", method = RequestMethod.POST)
-    public ModelAndView searchByTitle(@RequestParam("title") String title) {
+    public ModelAndView searchByTitle(@RequestParam("title") String title, Principal principal) {
 
-        User user = userService.findUserWithBlogPostsByUsername("user");
+        User user = userService.findUserWithBlogPostsByUsername(principal.getName());
 
         List<BlogPost> blogPosts = blogPostService.listAllBlogPostsByUserAndTitleLike(user, title);
 
