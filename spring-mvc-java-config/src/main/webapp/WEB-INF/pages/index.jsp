@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,6 +49,20 @@
     <a href="${pageContext.request.contextPath}/newblogpost.html">New Blog Post</a>
     <br />
     <a href="${pageContext.request.contextPath}/blogPosts">Blog Posts</a>
+    <br />
+    <a href="${pageContext.request.contextPath}/admin.html">Admin</a>
+    <br />
+
+    <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+
+        <b>You are logged is as : </b> <security:authentication property="principal.username"/>
+        with the role of: <security:authentication property="principal.authorities"/>
+
+        <br />
+
+        <a href="<c:url value="/logout"/>">Logout</a>
+
+    </security:authorize>
 </div>
 
 <footer class="footer">
