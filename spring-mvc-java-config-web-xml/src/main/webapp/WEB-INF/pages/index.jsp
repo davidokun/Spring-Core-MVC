@@ -42,7 +42,7 @@
     <p>The sample application for Spring MVC JavaConfig</p>
     <p>Welcome to Java Spring MVC with Java Configuration</p>
 
-
+    springmvc-java-config-web-xml
 
 
 </div>
@@ -51,10 +51,6 @@
     <div class="container">
         <p class="text-muted"><b>2016</b></p>
 
-        <a href="<%=request.getContextPath()%>?language=en">EN</a>
-        <a href="<%=request.getContextPath()%>?language=de">DE</a>
-
-        <font color="green"><b><spring:message code="welcome.text"/></b></font>
     </div>
 </footer>
 
